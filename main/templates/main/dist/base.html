@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="{% url 'home' %}" class="brand-logo">logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a href="{% url 'blog:blog' %}">blog</a>
+                </li>
+                {% if is_auth %}
+                    <li>
+                        <a href="{% url 'accounts:profile' user.username %}">{{ user.username }}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'accounts:logout' %}">logout</a>
+                    </li>
+                {% else %}
+                  <li>
+                    <a href="{% url 'accounts:signup' %}">sign up</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'accounts:login' %}">log in</a>
+                  </li>
+                {% endif %}
+              </ul>
+        </div>
+    </nav>
+    <div class="main">
+        {% block content %}
+
+        {% endblock %}    
+    </div>
+</body>
+</html>

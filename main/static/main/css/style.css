@@ -1,0 +1,130 @@
+h1, h2, h3, h4{
+    font-family: "Alice", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+table{
+    display: flex;
+    width: 75%;
+}
+
+body{
+    background-color: #46ebdc;
+    color: #122a57;
+    font-family: "PT Sans Caption", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+}
+
+a{
+    color: #305ba1;
+    text-decoration: underline;
+}
+
+h1 a{
+    text-decoration: none;
+}
+
+nav a{
+    text-decoration: none;
+}
+
+button.btn{
+    background-color: #eb923f;
+}
+
+label{
+    color: #122a57;
+}
+
+textarea{
+    height: 128px;
+}
+
+input::placeholder, textarea::placeholder{
+    color: #6f6f6f;
+    font-family: "PT Sans Caption", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+}
+
+.radio{
+    border: 1px solid #000;
+    padding: 8px;
+    border-radius: 2px;
+    margin-left: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.checked{
+    border: none;
+    background-color: #eb923f;
+    color: #fff;
+}
+
+.main{
+    width: 75%;
+    margin: 30px auto;
+}
+
+.table{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+
+.tr{
+    display: flex;
+    padding: 10px 0;
+}
+
+.th{
+    font-weight: bold;
+}
+
+.tr:nth-child(2){
+    justify-content: right;
+    margin-right: 2%;
+}
+
+.td{
+    display: flex;
+    flex-direction: column;
+    width: 14%;
+}
+
+.nav-wrapper{
+    width: 75%;
+}
+
+nav{
+    background-color: #4690eb;   
+    display: flex; 
+    justify-content: center;
+}
+
+.avatar{
+    width: 100px;
+}
+
+.content{
+    font-size: 18pt;
+}
+    
+.comment{
+    border: 1px solid #4690eb;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 6px;
+}
+
+.additional{
+    display: flex;
+    justify-content: space-between;
+    color: #6f6f6f;
+    font-size: 16px;
+}

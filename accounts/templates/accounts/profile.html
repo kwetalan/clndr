@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>{{ profile.user }}</h1>
+    <img class="avatar" src="{{ profile.avatar.url }}" alt="">
+    <p>{{ profile.bio }}</p>    
+    <p>{{ birth_date }}</p>
+    <a href="{% url 'accounts:edit' %}">Edit</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+{% if is_auth %}
+<p>
+  <a href="{% url 'blog:add_article' %}">Add new article</a>
+</p>
+{% endif %}
+
+<p>
+  <span>Sort by:</span>
+  <span id="time" class="radio checked">Time</span>
+  <span id="views" class="radio">Views</span>
+</p>
+<div id="articles-by-time">
+  {% for a in articles_by_time %}
+      <h1><a href="{% url 'blog:article' a.slug %}">{{ a.header }}</a></h1>
+      <div class="additional">
+        <a href="{% url 'accounts:profile' a.author_id %}">{{ a.author_id }}</a>
+      </div>
+      <p>{{ a.content }}</p>
+  {% endfor %}
+</div>
+<div id="articles-by-views">
+  {% for a in articles_by_views %}
+      <h1><a href="{% url 'blog:article' a.slug %}">{{ a.header }}</a></h1>
+      <div class="additional">
+        <a href="{% url 'accounts:profile' a.author_id %}">{{ a.author_id }}</a>
+      </div>
+      <p>{{ a.content }}</p>
+  {% endfor %}  
+</div>
+<script src="{% static 'blog/js/sort.js' %}"></script>
+{% endblock %}

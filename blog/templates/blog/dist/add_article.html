@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<form>
+    {% csrf_token %}
+    {{ form }}
+</form>
+<button class="btn waves-effect" type="submit">Create article</button>
+{% endblock %}

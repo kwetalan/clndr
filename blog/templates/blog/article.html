@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>{{ article.header }}</h1>
+<div class="additional">
+    <div>
+        <a href="{% url 'accounts:profile' article.author_id %}">{{ article.author_id }}</a>
+    </div>
+    <div>
+        {{ article.date|timesince }} 
+    </div>
+</div>
+<div class="content">
+    {{ article.content }}
+</div>
+<div class="additional">
+    {{ article.views }} views
+</div>
+<h3>Comments</h3>
+{% if is_auth %}
+<form action="" method="post">
+    {% csrf_token %}
+    {% for f in form %}
+        {{ f }}
+    {% endfor %}
+    <button class="btn waves-effect">Send</button>
+</form>
+{% endif %}
+{% for c in comment_list %}
+    <div class="comment">
+        <div class="additional">
+            <div>{{ c.author_id }}</div>
+            <div>{{ c.date|timesince }} ago</div>
+        </div>
+       <p>{{ c.content }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

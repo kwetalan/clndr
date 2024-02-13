@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<a href="{% url 'month' y m %}">current month</a>
+<p>Today is the {{ year_month }}, {{ today.number }}</p>
+<p>Sign: {{ today.sign.symbol }}, {{ today.sign.word }}</p>
+<p>Phase: {{ today.phase.symbol }}, {{ today.phase.word }}</p>
+<div class="main">
+    <p>
+        A sowing calendar is a valuable tool for gardeners and farmers that provides guidance on the optimal time to sow different types of plants,
+        vegetables, and flowers. It takes into account factors like climate, soil conditions, and the specific requirements of each plant to ensure
+        successful germination and growth.
+    </p>
+   <p>
+    How to use the sowing calendar:
+   </p>
+<ul>
+    <li>
+        Determine your location: The first step is to identify your geographical location. This is crucial as different regions have varying climates and growing seasons. Knowing your location will help you find accurate information tailored to your specific area.
+    </li>
+    <li>
+        Choose your plants: Once you know your location, select the plants you want to grow. Whether it's vegetables, herbs, or flowers, each plant has its own ideal sowing time. Our sowing calendar provides detailed information on when and how to sow each type of plant.
+    </li>
+    <li>
+        Find the recommended sowing dates: Using our user-friendly interface, navigate to the sowing calendar section and enter your location details. Our smart algorithm will generate a customized calendar based on your location, indicating the best times to sow each plant.
+    </li>
+    <li>
+        Follow the instructions: Once you have the sowing dates, follow the instructions provided for each plant. This may include tips on soil preparation, seed treatment, and planting techniques. Our comprehensive guides will help you make the most of your sowing calendar.
+    </li>
+    <li>
+        Track your progress: Keep a record of your sowing activities and monitor the growth of your plants. This will help you evaluate the effectiveness of the sowing calendar and make adjustments for future seasons.
+    </li>
+</ul>
+<p>
+    Remember, the sowing calendar is a valuable tool, but it's essential to consider other factors like local weather conditions and specific plant requirements. Adaptation and experimentation are key to successful gardening.
+</p>
+<p>
+   Start using our sowing calendar today and unlock the full potential of your garden! Happy sowing!
+</p>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>Registration</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {% for f in form %}
+    <p>
+        <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+        {{ f }}
+    </p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+    <button class="btn waves-effect" type="submit">Sign up</button>
+</form>
+{% endblock %}

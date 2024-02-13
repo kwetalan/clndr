@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>{{ api_data.title }}</h1>
+<div class="table">
+  <div class="tr">
+    <div class="td">M</div>
+    <div class="td">T</div>
+    <div class="td">W</div>
+    <div class="td">T</div>
+    <div class="td">F</div>
+    <div class="td">S</div>
+    <div class="td">S</div>
+  </div>
+  {% for week in api_data.days %}
+  <div class="tr">
+    {% for day in week %}
+      <div class="td">
+        {{ day.number }}
+        <span>{{ day.sign.symbol }}</span>
+        <span>{{ day.phase.symbol }}</span>
+      </div>
+    {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+{% for week in api_data.days %}
+  {% for day in week %}
+    <p><b>{{ day.number }}</b> {{ day.recomendations }}</p>
+  {% endfor %}
+{% endfor %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+</script>
+{% endblock %}
