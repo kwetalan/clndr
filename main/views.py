@@ -11,6 +11,8 @@ from .utils import DataMixin
 from .models import *
 from .forms import *
 import requests
+import asyncio
+import aiohttp
 
 class Index(DataMixin, TemplateView):
     template_name='main/index.html'
@@ -21,27 +23,29 @@ class Index(DataMixin, TemplateView):
         return context | c_def
     
     def get(self, request, *args, **kwargs):
-        url = 'http://127.0.0.1:8000/api/'
-
         context = self.get_context_data(**kwargs)
         y = context['y']
         m = context['m']
 
-        data = {
-            'y': y,
-            'm': m,
-        }
+        url = f'http://127.0.0.1:8000/api/?y={y}&m={m}'
 
-        response = requests.get(url, params=data)
+        async def fetch_data(url):
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url) as response:
+                    data = await response.json()
+                    return data
 
-        if response.status_code == 200:
-            days = response.json().get('days')
-            context['year_month'] = response.json().get('title')
+        async def main():
+            api_data = await fetch_data(url)
+            days = api_data.get('days')
+            context['year_month'] = api_data.get('title')
             for week in days:
                 for day in week:
                     if day.get('number') == context['d']:
                         context['today'] = day
                         break
+
+        asyncio.run(main()) 
 
         return self.render_to_response(context)
     
@@ -49,22 +53,24 @@ class Month(DataMixin, TemplateView):
     template_name = 'main/month.html'
 
     def get(self, request, *args, **kwargs):
-        url = 'http://127.0.0.1:8000/api/'
-
+        
         context = self.get_context_data(**kwargs)
         y = kwargs['y']
         m = kwargs['m']
 
-        data = {
-            'y': y,
-            'm': m,
-        }
+        url = f'http://127.0.0.1:8000/api/?y={y}&m={m}'
 
-        response = requests.get(url, params=data)
+        async def fetch_data(url):
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url) as response:
+                    data = await response.json()
+                    return data
 
-        if response.status_code == 200:
-            context['api_data'] = response.json()
-            context['title'] = response.json().get('title')
+        async def main():
+            context['api_data'] = await fetch_data(url)
+            context['title'] = context['api_data'].get('title')
+
+        asyncio.run(main()) 
         
         return self.render_to_response(context)
 
